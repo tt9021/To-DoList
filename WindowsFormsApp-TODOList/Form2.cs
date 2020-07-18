@@ -19,6 +19,7 @@ namespace WindowsFormsApp_TODOList
             InitializeComponent();
         }
 
+        /* 追加ボタンクリック時 */
         private void add_button_Click(object sender, EventArgs e)
         {
             string date_combobox = "期間";
@@ -48,6 +49,7 @@ namespace WindowsFormsApp_TODOList
             }
         }
 
+        /* 削除ボタンクリック時 */
         private void delete_button_Click(object sender, EventArgs e)
         {
             string date_combobox = "期間";
@@ -83,21 +85,63 @@ namespace WindowsFormsApp_TODOList
 
         }
 
+        /* 作成ボタンクリック時 */
         private void list_create_button_Click(object sender, EventArgs e)
         {
             bool create_result = false;
+            result_view_window.label_no label_No = result_view_window.label_no.False_label;
 
-            ToDo_data createList = new ToDo_data(title_textBox.Text, contents_richTextBox.Text);
-            
-            create_result = createList.create_ToDo_data();
-
-            if(true == create_result)
+            /* 日時もしくは備考項目が表示されている場合 これらも含めたファイルを作成する */
+            if (true == dateTimePicker_start.Visible || true == dateTimePicker_end.Visible ||
+                true == extra_richTextBox.Visible)
             {
-                Console.WriteLine("create_file SUCCESS");
+                add_ToDo_data add_createList = new add_ToDo_data(title_textBox.Text, contents_richTextBox.Text,
+                    dateTimePicker_start.Value, dateTimePicker_end.Value, extra_richTextBox.Text);
+
+                create_result = add_createList.create_ToDo_data_add();
+                if (true == create_result)
+                {
+                    Console.WriteLine("create_file SUCCESS");
+
+                    label_No = result_view_window.label_no.Success_label;
+                    result_view_window result_form = new result_view_window(label_No);
+                    result_form.Show();
+
+                }
+                else
+                {
+                    Console.WriteLine("create_file FAILED");
+
+                    label_No = result_view_window.label_no.False_label;
+                    result_view_window result_form = new result_view_window(label_No);
+                    result_form.Show();
+                }
+
             }
-            else
+            else 
             {
-                Console.WriteLine("create_file FAILED");
+                ToDo_data createList = new ToDo_data(title_textBox.Text, contents_richTextBox.Text);
+
+                create_result = createList.create_ToDo_data();
+
+                if (true == create_result)
+                {
+                    Console.WriteLine("create_file SUCCESS");
+
+                    label_No = result_view_window.label_no.Success_label;
+                    result_view_window result_form = new result_view_window(label_No);
+                    result_form.Show();
+
+                }
+                else
+                {
+                    Console.WriteLine("create_file FAILED");
+
+                    label_No = result_view_window.label_no.False_label;
+                    result_view_window result_form = new result_view_window(label_No);
+                    result_form.Show();
+
+                }
             }
         }
     }

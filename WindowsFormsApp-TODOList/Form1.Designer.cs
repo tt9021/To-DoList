@@ -35,9 +35,11 @@
             this.tabPage_doing = new System.Windows.Forms.TabPage();
             this.tabPage_finish = new System.Windows.Forms.TabPage();
             this.tabPage_all = new System.Windows.Forms.TabPage();
+            this.ToDo_listView = new System.Windows.Forms.ListView();
             this.ToDo_menuStrip.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.Listview_tabControl.SuspendLayout();
+            this.tabPage_doing.SuspendLayout();
             this.SuspendLayout();
             // 
             // ToDo_menuStrip
@@ -84,9 +86,11 @@
             this.Listview_tabControl.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.Listview_tabControl.TabIndex = 0;
             this.Listview_tabControl.Visible = false;
+            this.Listview_tabControl.SelectedIndexChanged += new System.EventHandler(this.Listview_tabControl_SelectedIndexChanged);
             // 
             // tabPage_doing
             // 
+            this.tabPage_doing.Controls.Add(this.ToDo_listView);
             this.tabPage_doing.Location = new System.Drawing.Point(4, 22);
             this.tabPage_doing.Name = "tabPage_doing";
             this.tabPage_doing.Padding = new System.Windows.Forms.Padding(3);
@@ -115,6 +119,17 @@
             this.tabPage_all.Text = "All";
             this.tabPage_all.UseVisualStyleBackColor = true;
             // 
+            // ToDo_listView
+            // 
+            this.ToDo_listView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ToDo_listView.HideSelection = false;
+            this.ToDo_listView.Location = new System.Drawing.Point(3, 3);
+            this.ToDo_listView.Name = "ToDo_listView";
+            this.ToDo_listView.Size = new System.Drawing.Size(783, 388);
+            this.ToDo_listView.TabIndex = 0;
+            this.ToDo_listView.UseCompatibleStateImageBehavior = false;
+            this.ToDo_listView.View = System.Windows.Forms.View.Details;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -128,6 +143,7 @@
             this.ToDo_menuStrip.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.Listview_tabControl.ResumeLayout(false);
+            this.tabPage_doing.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,6 +158,7 @@
         private System.Windows.Forms.TabPage tabPage_doing;
         private System.Windows.Forms.TabPage tabPage_finish;
         private System.Windows.Forms.TabPage tabPage_all;
+        private System.Windows.Forms.ListView ToDo_listView;
     }
 }
 
