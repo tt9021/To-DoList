@@ -33,9 +33,9 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.Listview_tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_doing = new System.Windows.Forms.TabPage();
+            this.ToDo_listView = new System.Windows.Forms.ListView();
             this.tabPage_finish = new System.Windows.Forms.TabPage();
             this.tabPage_all = new System.Windows.Forms.TabPage();
-            this.ToDo_listView = new System.Windows.Forms.ListView();
             this.ToDo_menuStrip.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.Listview_tabControl.SuspendLayout();
@@ -99,6 +99,17 @@
             this.tabPage_doing.Text = "実施中";
             this.tabPage_doing.UseVisualStyleBackColor = true;
             // 
+            // ToDo_listView
+            // 
+            this.ToDo_listView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ToDo_listView.HideSelection = false;
+            this.ToDo_listView.Location = new System.Drawing.Point(3, 3);
+            this.ToDo_listView.Name = "ToDo_listView";
+            this.ToDo_listView.Size = new System.Drawing.Size(783, 388);
+            this.ToDo_listView.TabIndex = 0;
+            this.ToDo_listView.UseCompatibleStateImageBehavior = false;
+            this.ToDo_listView.View = System.Windows.Forms.View.Details;
+            // 
             // tabPage_finish
             // 
             this.tabPage_finish.Location = new System.Drawing.Point(4, 22);
@@ -118,17 +129,6 @@
             this.tabPage_all.TabIndex = 2;
             this.tabPage_all.Text = "All";
             this.tabPage_all.UseVisualStyleBackColor = true;
-            // 
-            // ToDo_listView
-            // 
-            this.ToDo_listView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ToDo_listView.HideSelection = false;
-            this.ToDo_listView.Location = new System.Drawing.Point(3, 3);
-            this.ToDo_listView.Name = "ToDo_listView";
-            this.ToDo_listView.Size = new System.Drawing.Size(783, 388);
-            this.ToDo_listView.TabIndex = 0;
-            this.ToDo_listView.UseCompatibleStateImageBehavior = false;
-            this.ToDo_listView.View = System.Windows.Forms.View.Details;
             // 
             // Form1
             // 

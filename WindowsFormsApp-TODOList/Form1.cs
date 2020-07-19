@@ -51,10 +51,19 @@ namespace WindowsFormsApp_TODOList
         {
 
             var file_list = new List<string>();
-            string[] set_string;
+            string[] toarray_list; /* List<string>の要素をstring[]で取得用 */
+            string[] set_string = new string[6]; /* 表示させる文字列の配列 */
+
+            int string_num_start = 0;
+            int string_num_end = 0;
 
             if (tabPage_doing == Listview_tabControl.SelectedTab)
             {
+                /* リストを全削除(初期化) */
+                ToDo_listView.Columns.Clear();
+                ToDo_listView.Items.Clear();
+                
+                /* 表示列 */
                 Console.WriteLine("tab_view");
                 ToDo_listView.Columns.Add("実施状態");
                 ToDo_listView.Columns.Add("タイトル");
@@ -63,31 +72,62 @@ namespace WindowsFormsApp_TODOList
                 ToDo_listView.Columns.Add("終了日");
                 ToDo_listView.Columns.Add("備考");
 
-                //ToDo_data createList = new ToDo_data();
-                //file_list = createList.road_list();
+                /* セットする文字列取得 */
+                ToDo_data createlist = new ToDo_data();
+                file_list = createlist.road_list();
 
-                //for(int i = 0; i < file_list.Count; i++)
-                //{
-                //    file_list.IndexOf("[状態]", 1);
-                //    set_string.SetValue(, 1);
+                toarray_list = file_list.ToArray();
 
-                //    file_list.IndexOf("[タイトル]", 1);
-                //    file_list.IndexOf("[内容]", 1);
-                //    file_list.IndexOf("[開始日時]", 1);
-                //    file_list.IndexOf("[終了日時]", 1);
-                //    file_list.IndexOf("[備考]", 1);
+                for(int i = 0; i < file_list.Count; i++)
+                {
+                    /* [状態]の内容取得 */
+                    string_num_start  = toarray_list[i].IndexOf("[状態]", 1);
+                    string_num_end = toarray_list[i].IndexOf("[タイトル]", 1);
+                    set_string[0] = toarray_list[i].Substring(string_num_start + 5, string_num_end - (string_num_start + 5));
 
-                //    ToDo_listView.Items.Add(new ListView(set_string));
-                //}
+                    /* [タイトル]の内容取得 */
+                    string_num_start  = toarray_list[i].IndexOf("[タイトル]", 1);
+                    string_num_end = toarray_list[i].IndexOf("[内容]", 1);
+                    set_string[1] = toarray_list[i].Substring(string_num_start + 6, string_num_end - (string_num_start + 6));
 
-                //リスト項目の設定
-               // string[] set_string = { "1行目_列1", "1行目_列2", "1行目_列3" };
-                //string[] row_2 = { "2行目_列1", "2行目_列2", "2行目_列3" };
-               // string[] row_3 = { "3行目_列1", "3行目_列2", "3行目_列3" };
-                // todo_listview.items.add(new listviewitem(row_1));
-                //todo_listview.items.add(new listviewitem(row_2));
-                //todo_listview.items.add(new listviewitem(row_3));
 
+                    /* [内容]の内容取得 */
+                    string_num_start  = toarray_list[i].IndexOf("[内容]", 1);
+                    string_num_end = toarray_list[i].IndexOf("[開始日時]", 1);
+                    if(-1 != string_num_end)
+                    {
+                        set_string[2] = toarray_list[i].Substring(string_num_start + 4, string_num_end - (string_num_start + 4));
+                    }
+                    else{
+                        set_string[2] = toarray_list[i].Substring(string_num_start + 4);
+                    }
+
+                    /* [開始日時]の内容取得 */
+                    string_num_start  = toarray_list[i].IndexOf("[開始日時]", 1);
+                    string_num_end = toarray_list[i].IndexOf("[終了日時]", 1);
+                    if(-1 != string_num_start || -1 != string_num_end)
+                    {
+                        set_string[3] = toarray_list[i].Substring(string_num_start + 6, string_num_end - (string_num_start + 6));
+                    }
+
+                    /* [終了日時]の内容取得 */
+                    string_num_start  = toarray_list[i].IndexOf("[終了日時]", 1);
+                    string_num_end = toarray_list[i].IndexOf("[備考]", 1);
+                    if(-1 != string_num_start || -1 != string_num_end)
+                    {
+                        set_string[4] = toarray_list[i].Substring(string_num_start + 6, string_num_end - (string_num_start + 6) );
+                    }
+
+                    /* [備考]の内容取得 */
+                    string_num_start  = toarray_list[i].IndexOf("[備考]", 1);
+                    if(-1 != string_num_start || -1 != string_num_end)
+                    {
+                        set_string[5] = toarray_list[i].Substring(string_num_start + 4);
+                    }
+
+                    /* 取得した内容をリスト項目に追加する */
+                    ToDo_listView.Items.Add(new ListViewItem(set_string));
+                }
             }
 
             return;

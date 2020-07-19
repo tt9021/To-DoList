@@ -88,36 +88,36 @@ namespace WindowsFormsApp_TODOList
             return result;
         }
 
-        //public List<string> road_list()
-        //{
-        //    var file_list = new List<string>();
+        public List<string> road_list()
+        {
+            var file_list = new List<string>();
 
-        //    string path = @"\ToDo_List\"; /* 作成ファイル保存フォルダ */
-        //    string road_path; /* ToDo_List\[タイトル].txtのパスを作成 */
+            string path = @"\ToDo_List\"; /* 作成ファイル保存フォルダ */
+            string road_path; /* todo_list\[タイトル].txtのパスを作成 */
 
-        //    DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory()); /* カレントディレクトリを取得 */
-        //    road_path = di.FullName + path; /* カレントディレクトから/ToDo_Listのパス追加 */
-        //    Console.WriteLine(road_path);
+            DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory()); /* カレントディレクトリを取得 */
+            road_path = di.FullName + path; /* カレントディレクトから/todo_listのパス追加 */
+            Console.WriteLine(road_path);
 
-        //    string[] list_files_name = Directory.GetFiles(road_path, "*.txt");
+            string[] list_files_name = Directory.GetFiles(road_path);
 
+            /* todo_listフォルダ内にあるtxtファイルの内容をリストに記録 */
+            foreach (string name in list_files_name)
+            {
+                //road_path = di.FullName + path + name; /* 取得するファイルパスを設定 */
+                road_path = name;
+                StreamReader stream = new StreamReader(road_path);
+                string stream_str = stream.ReadToEnd();
 
-        //    /* ToDo_Listフォルダ内にあるtxtファイルの内容をリストに記録 */
-        //    foreach (string name in list_files_name)
-        //    {
-        //        road_path = di.FullName + path + name + ".txt"; /* 取得するファイルパスを設定 */
-        //        StreamReader stream = new StreamReader(road_path, Encoding.GetEncoding("UTF-8"));
-        //        string stream_str = stream.ReadToEnd();
+                file_list.Add(stream_str);
 
-        //        file_list.Add(stream_str);
+                stream.Close();
 
-        //        stream.Close();
+            }
 
-        //    }
-
-        //    return file_list;
+            return file_list;
             
-        //}
+        }
     }
 
     /* List子クラス */
